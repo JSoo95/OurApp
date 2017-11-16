@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">신선설농탕</string>
+    <string name="address">서울특별시 종로구 대학로 143 (혜화동 167 - 3) </string>
+    <string name="call">02-744-8533</string>
+    <string name="time">매일 00:00 ~ 24:00</string>
+    <string name="menu">식사 메뉴</string>
+
+</resources>
