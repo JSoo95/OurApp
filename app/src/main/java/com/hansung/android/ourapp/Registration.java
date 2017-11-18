@@ -1,28 +1,59 @@
 package com.hansung.android.ourapp;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Registration extends AppCompatActivity {
 
+    final int REQUEST_CODE_READ_CONTACTS = 1;
+    EditText mName;
+    EditText mAdress;
+    EditText mNumber;
+
+    private DBHelper mDbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
+
+
+        mName = (EditText)findViewById(R.id.edit_name);
+        mAdress = (EditText)findViewById(R.id.edit_adress);
+        mNumber = (EditText)findViewById(R.id.edit_number);
+
+        mDbHelper = new DBHelper(this);
+
+        Button btn1 = (Button)findViewById(R.id.rgt);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                insertRecord();
+
+                Intent intent = new Intent(Registration.this, RestaurantDetail.class);
+                startActivity(intent);
+            }
+        });
 
         ImageButton btn = (ImageButton)findViewById(R.id.iconItem);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +106,20 @@ public class Registration extends AppCompatActivity {
             }
         }
     }
+
+    private void insertRecord() {
+        EditText name = (EditText)findViewById(R.id.edit_name);
+        EditText adress = (EditText)findViewById(R.id.edit_adress);
+        EditText number = (EditText)findViewById(R.id.edit_number);
+
+        long nOfRows = mDbHelper.insertUserByMethod(name.getText().toString(),adress.getText().toString(),number.getText().toString());
+        if (nOfRows >0)
+            Toast.makeText(this,nOfRows+" Record Inserted", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(this,"No Record Inserted", Toast.LENGTH_SHORT).show();
+    }
+
+
 
 
 
