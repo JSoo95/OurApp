@@ -12,12 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <Button
+        <ImageButton
             android:id="@+id/iconItem"
-            android:layout_width="wrap_content"
+            android:layout_width="168dp"
             android:layout_height="match_parent"
             android:scaleType="centerInside"
             android:layout_gravity="center_vertical"
+            android:background="@drawable/camera"
             />
         <LinearLayout
             android:orientation="vertical"
@@ -72,7 +73,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="맛집등록"/>
+        android:text="맛집등록"
+        />
 
 
 
