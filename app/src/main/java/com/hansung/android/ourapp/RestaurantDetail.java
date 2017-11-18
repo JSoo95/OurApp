@@ -1,11 +1,14 @@
 package com.hansung.android.ourapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -37,6 +40,15 @@ public class RestaurantDetail extends AppCompatActivity {
                 String name = ((MyItem)adapter.getItem(position)).nName;
                 Toast.makeText(RestaurantDetail.this, name + " selected",
                         Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button btn = (Button)findViewById(R.id.call);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent implicit_intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:02-744-8533"));
+                startActivity(implicit_intent);
             }
         });
 
