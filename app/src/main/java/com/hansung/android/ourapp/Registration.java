@@ -24,7 +24,6 @@ import java.util.Date;
 
 public class Registration extends AppCompatActivity {
 
-    final int REQUEST_CODE_READ_CONTACTS = 1;
     EditText mName;
     EditText mAdress;
     EditText mNumber;
