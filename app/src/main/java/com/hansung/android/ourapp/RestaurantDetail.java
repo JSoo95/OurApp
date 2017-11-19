@@ -1,26 +1,48 @@
 package com.hansung.android.ourapp;
 
+import android.content.ClipData;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 public class RestaurantDetail extends AppCompatActivity {
     static MyAdapter adapter;
+    private DBHelper mDbHelper;
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_detail);
+        ActionBar actionBar = getSupportActionBar();
+
+        TextView name = (TextView) findViewById(R.id.name);
+        name.setText(UserContract.Users.KEY_NAME);
+
 
 //        ArrayList<MyItem> data = new ArrayList<MyItem>();
 //        data.add(new MyItem(R.drawable.capture1, "설렁탕", "7000"));
@@ -52,6 +74,18 @@ public class RestaurantDetail extends AppCompatActivity {
 //            }
 //        });
 
+
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.action_subactivity:
+                startActivity(new Intent(this, MenuRegistration.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
 
 
     }
