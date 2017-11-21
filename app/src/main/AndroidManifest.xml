@@ -36,7 +36,8 @@
         </provider>
 
         <activity android:name=".MenuRegistration" />
-        <activity android:name=".MenuDetail"></activity>
+        <activity android:name=".MenuDetail"
+            android:parentActivityName=".RestaurantDetail" ></activity>
     </application>
 
 </manifest>
