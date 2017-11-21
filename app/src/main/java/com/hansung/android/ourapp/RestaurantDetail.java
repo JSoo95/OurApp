@@ -27,6 +27,7 @@ import java.util.ArrayList;
 public class RestaurantDetail extends AppCompatActivity {
     static MyAdapter adapter;
     private DBHelper mDbHelper;
+    private ArrayList<MyItem> data = null;
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -49,33 +50,56 @@ public class RestaurantDetail extends AppCompatActivity {
 //        data.add(new MyItem(R.drawable.capture2, "순사골국", "8000"));
 //        data.add(new MyItem(R.drawable.capture3, "떡국설렁탕", "7500"));
 //        data.add(new MyItem(R.drawable.capture4, "만두설렁탕", "8000"));
-//
+
 //        adapter = new MyAdapter(this, R.layout.listview_item, data);
-//
-//        ListView listView = (ListView)findViewById(R.id.listView);
+
+        ListView listView = (ListView)findViewById(R.id.listView);
 //        listView.setAdapter(adapter);
-//
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            public void onItemClick(AdapterView<?> parent, View vClicked,
-//                                    int position, long id) {
-//                //   String name = (String) ((TextView)vClicked.findViewById(R.id.textItem1)).getText();
+
+        data = new ArrayList<>();
+
+        MyItem menu1 = new MyItem(R.drawable.capture1, "설렁탕", "7000원");
+        MyItem menu2 = new MyItem(R.drawable.capture2, "순사골국", "8000원");
+        MyItem menu3 = new MyItem(R.drawable.capture3, "떡국설렁탕", "7500원");
+        MyItem menu4 = new MyItem(R.drawable.capture4, "만두설렁탕", "8000원");
+
+        data.add(menu1);
+        data.add(menu2);
+        data.add(menu3);
+        data.add(menu4);
+
+        MyAdapter adapter = new MyAdapter(this, R.layout.listview_item, data);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View vClicked,
+                                    int position, long id) {
+                //   String name = (String) ((TextView)vClicked.findViewById(R.id.textItem1)).getText();
 //                String name = ((MyItem)adapter.getItem(position)).nName;
 //                Toast.makeText(RestaurantDetail.this, name + " selected",
 //                        Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        Button btn = (Button)findViewById(R.id.call);
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent implicit_intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:02-744-8533"));
-//                startActivity(implicit_intent);
-//            }
-//        });
+                Intent intent = new Intent(getApplicationContext(), MenuDetail.class);
+
+                intent.putExtra("menu", Integer.toString(data.get(position).getImageItem1()));
+                intent.putExtra("text1", data.get(position).getTextItem1());
+                intent.putExtra("text2", data.get(position).getTextItem2());
+                startActivity(intent);
+            }
+        });
+
+        Button btn = (Button)findViewById(R.id.call);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent implicit_intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:02-744-8533"));
+                startActivity(implicit_intent);
+            }
+        });
 
 
     }
+
+
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

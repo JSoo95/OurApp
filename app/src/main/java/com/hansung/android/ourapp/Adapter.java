@@ -13,25 +13,25 @@ import java.util.ArrayList;
 /**
  * Created by Kwanwoo on 2016-09-05.
  */
-class MyAdapter extends BaseAdapter {
-    private Context mContext;
-    private int mResource;
-    private ArrayList<MyItem> mItems = new ArrayList<MyItem>();
+ class MyAdapter extends BaseAdapter {
+    private LayoutInflater inflater;
+    private ArrayList<MyItem> data;
+    private int layout;
 
-    public MyAdapter(Context context, int resource, ArrayList<MyItem> items) {
-        mContext = context;
-        mItems = items;
-        mResource = resource;
+    public MyAdapter(Context context, int layout, ArrayList<MyItem> data) {
+        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);;
+        this.data = data;
+        this.layout = layout;
     }
 
     @Override
     public int getCount() {
-        return mItems.size();
+        return data.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return mItems.get(position);
+        return data.get(position).getTextItem1();
     }
 
     @Override
@@ -43,33 +43,49 @@ class MyAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(mResource, parent,false);
+
+            convertView = inflater.inflate(layout, parent,false);
         }
+        MyItem myItem = data.get(position);
+
         // Set Icon
-        ImageView icon = (ImageView) convertView.findViewById(R.id.imageItem1);
-        icon.setImageResource(mItems.get(position).mIcon);
+        ImageView imageicon1 = (ImageView) convertView.findViewById(R.id.imageItem1);
+        imageicon1.setImageResource(myItem.getImageItem1());
 
         // Set Text 01
-        TextView name = (TextView) convertView.findViewById(R.id.textItem1);
-        name.setText(mItems.get(position).nName);
+        TextView texticon1 = (TextView) convertView.findViewById(R.id.textItem1);
+        texticon1.setText(myItem.getTextItem1());
 
         // Set Text 02
-        TextView age = (TextView) convertView.findViewById(R.id.textItem2);
-        age.setText(mItems.get(position).nAge);
+        TextView texticon2 = (TextView) convertView.findViewById(R.id.textItem2);
+        texticon2.setText(myItem.getTextItem2());
 
         return convertView;
     }
 }
 
-class MyItem {
-    int mIcon; // image resource
-    String nName; // text
-    String nAge;  // text
+ class MyItem {
+   private int imageitem1; // 메뉴사진
+   private String textitem1; // 메뉴이름
+   private String textitem2;  // 메뉴가격
 
-    MyItem(int aIcon, String aName, String aAge) {
-        mIcon = aIcon;
-        nName = aName;
-        nAge = aAge;
+    public int getImageItem1(){
+        return imageitem1;
     }
-}
+
+    public String getTextItem1(){
+        return textitem1;
+    }
+
+    public String getTextItem2(){
+        return textitem2;
+    }
+
+    public MyItem(int imageitem1, String textitem1, String textitem2) {
+        this.imageitem1 = imageitem1;
+        this.textitem1 = textitem1;
+        this.textitem2 = textitem2;
+
+    }
+
+    }
