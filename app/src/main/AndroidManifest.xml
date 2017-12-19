@@ -13,17 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RestaurantDetail" >
-        </activity>
-
-        <activity android:name=".Registration">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
-
+        <activity android:name=".RestaurantDetail" />
+        <activity android:name=".Registration" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -36,8 +27,18 @@
         </provider>
 
         <activity android:name=".MenuRegistration" />
-        <activity android:name=".MenuDetail"
-            android:parentActivityName=".RestaurantDetail" ></activity>
+        <activity
+            android:name=".MenuDetail"
+            android:parentActivityName=".RestaurantDetail" />
+        <activity android:name=".FragmentMenu" />
+        <activity android:name=".Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RestaurantMap" />
     </application>
 
 </manifest>
