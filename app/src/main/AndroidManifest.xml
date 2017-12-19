@@ -16,6 +16,10 @@
         <activity android:name=".RestaurantDetail" />
         <activity android:name=".Registration" />
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCAOi-5Q5L56otvLqybauHPRJFvoQHurZ8"/>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.hansung.android.ourapp"
