@@ -113,7 +113,7 @@ public class Registration extends AppCompatActivity {
         EditText adress = (EditText)findViewById(R.id.edit_adress);
         EditText number = (EditText)findViewById(R.id.edit_number);
 
-        long nOfRows = mDbHelper.insertUserByMethod(name.getText().toString(),adress.getText().toString(),number.getText().toString());
+        long nOfRows = mDbHelper.insertUserByMethod(name.getText().toString(),adress.getText().toString(),number.getText().toString(),mPhotoFileName);
         if (nOfRows >0)
             Toast.makeText(this,nOfRows+" Record Inserted", Toast.LENGTH_SHORT).show();
         else

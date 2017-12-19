@@ -96,12 +96,13 @@ public class MenuRegistration extends AppCompatActivity {
             }
         }
     }
+    long nOfRows;
     private void insertRecord() {
         EditText name = (EditText)findViewById(R.id.medit_name);
         EditText call = (EditText)findViewById(R.id.medit_call);
         EditText explain = (EditText)findViewById(R.id.medit_explain);
 
-        long nOfRows = meDbHelper.insertUserByMethod(name.getText().toString(),call.getText().toString(),explain.getText().toString());
+        long nOfRows = meDbHelper.insertUserByMethod(name.getText().toString(),call.getText().toString(),explain.getText().toString(),mePhotoFileName);
         if (nOfRows >0)
             Toast.makeText(this,nOfRows+" Record Inserted", Toast.LENGTH_SHORT).show();
         else
